@@ -120,8 +120,7 @@ Simply run `node path/to/file.js`
 
 example `node 01week/rockPaperScissors.js`
 
-### Running Tests
-
+### Running Testlet
 Tests are a great way to make sure your code works the way you planned it would,
 and to make sure you don't break something in the future. We will be using them
 to test our understanding of the lesson. It's also our main way to assign grades
