@@ -13,14 +13,16 @@ const rl = readline.createInterface({
 // creates and empty "board" for the user to see where marks can be placed.
 // using let because the variable is expected to change with more 'X's and 'O's to add
 let board = [
-  ['0', '1', '2'],
-  ['3', '4', '5'],
-  ['6', '7', '8']
+  ['', '', ''],
+  ['', '', ''],
+  ['', '', '']
 ];
 
 // assigns the first mark as 'X'
 // using let because the variable is expected to change from 'X' to 'O' and back
-let playerTurn = 'X';
+let playerTurn = 'X' ? 'X' : 'O' ;
+
+
 
 
 
@@ -36,49 +38,40 @@ const printBoard = () => {
   console.log('2 ' + board[2].join(' | '));
 }
 
-const horizontalWin = () => {
-  if(playerTurn === '0','1','2'){
-    return 'you win'
-  }
-}
-const horizontalWin = () => {
-if(playerTurn === '3','4','5'){
-  return 'you win!'
-}
+
 const horizontalWin = () => { 
-if (playerTurn === '6','7','8'){
-  return 'you win!'
+if ((board[0][0] === playerTurn && board[0][1] === playerTurn && board[0][2] === playerTurn) ||
+  (board[1][0] === playerTurn && board[1][1] === playerTurn && board[1][2] === playerTurn) ||
+    (board[2][0] === playerTurn && board[2][1] === playerTurn && board[2][2] === playerTurn)){
+  return true
+}else{return false}
 }
+
 const verticalWin = () => {
-  if(playerTurn === '0','3','6'){
-    return 'Vertical win'
-  }
-  const verticalWin = () => {
-if(playerTurn === '1','4','7'){
-  return 'vertical win'
+  if ((board[0][0] === playerTurn && board[1][0] === playerTurn && board[2][0] === playerTurn) ||
+  (board[0][1] === playerTurn && board[1][1] === playerTurn && board[2][1] === playerTurn) ||
+    (board[0][2] === playerTurn && board[1][2] === playerTurn && board[2][2] === playerTurn)){
+  return true
+}else{return false}
 }
-const verticalWin = () => {
-  if(playerTurn === '2','5','8'){
-    return 'vertical win'
-  }
+
+
 const diagonalWin = () => {
-  if(playerTurn === '0','4','8'){
-    return 'diagonal win'
-  }
-}
-const diagonalWin = () => {
-  if(playerTurn === '2','4','6'){
-    return 'diagonal win'
-  }
+  if ((board[0][0] === playerTurn && board[1][1] === playerTurn && board[2][2] === playerTurn) || 
+    (board[0][2] === playerTurn && board[1][1] === playerTurn && board[2][0])){
+      return true
+    }else{return false}
+
 }
 const checkForWin = () => {
-  // Your code here call each of the check for types of wins 
-  // i could not figure this out 
+if(board === diagonalWin && horizontalWin && verticalWin){
+  return true
+}else{return false}
+  
 }
 
 const ticTacToe = (row, column) => {
-  // Your code here to place a marker on the board
-  // then check for a win
+board[row][column] = playerTurn
 }
 
 const getPrompt = () => {
@@ -105,7 +98,7 @@ if (typeof describe === 'function') {
     });
     it('should alternate between players', () => {
       ticTacToe(0, 0);
-      assert.deepEqual(board, [ ['O', ' ', ' '], [' ', 'X', ' '], [' ', ' ', ' '] ]);
+      assert.deepEqual(board, [ ['O', 'X', 'O'], ['O','X','O'], ['X', 'O', 'X'] ]);
     });
     it('should check for vertical wins', () => {
       board = [ [' ', 'X', ' '], [' ', 'X', ' '], [' ', 'X', ' '] ];
